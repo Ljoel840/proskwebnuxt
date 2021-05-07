@@ -89,8 +89,8 @@ export default {
   },
 
   server: {
-    port: 8080, // desarrollo
-	// host: '0', // produccion
-    // port: 3000  // produccion
+    // port: 8080, // desarrollo
+	host: '0', // produccion
+    port: 3000  // produccion
   }
 }
