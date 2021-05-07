@@ -56,7 +56,7 @@ export default {
 	'@nuxtjs/gtm',
 	['@nuxtjs/google-adsense', {
 		id: 'ca-pub-6638612991977084'
-	  }]
+	  }],
 
 	['nuxt-gmaps', {
 		key: "AIzaSyCNooIeXDvdlfzJbrQ6EJvPCh7hnnibd04",
