@@ -54,7 +54,7 @@ export default {
 	created() {
 		// window.scrollTo(0, 0)
 		if (this.academy.cargando){
-			this.$store.dispatch('academy/cargarAcademy')
+			this.$store.dispatch('academy/getAcademy')
 		}
 		this.opcion=this.data
 	},
