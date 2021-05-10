@@ -38,18 +38,25 @@ export default {
 			this.ultimo=this.ultimo+12
 		},
 		ir(pag,data){
+			var nameProsker = ''
+			if (pag='prosker-nameProsker'){
+				nameProsker = this.quitarEspacios(data.nombre)
+			}
 			this.$router.push({
 				name: pag, 
-				params: {data}
-			}).catch(() => {})
+				params: {data,nameProsker}
+			}) 
 		},
 		seleccion(opc){
 			if (opc.tipo==='Categorias') {
 				this.ir("mostrarCategorias",opc.datos)
 			}else{
-				this.ir("prosker",opc.datos.idEnc)
+				this.ir("prosker-nameProsker",opc.datos)
 
 			}
+		},
+		quitarEspacios(nombre){
+			return nombre.replace(/ /g, "-").toLowerCase()
 		},
 	},
 }

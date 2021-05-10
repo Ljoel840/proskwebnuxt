@@ -49,17 +49,17 @@
 	</section>
 </template>
 <script>
-import extraer from '../middleware/extraerProsker'
-import enviar from '../middleware/enviarMensaje'
+import extraer from '@/middleware/extraerProsker'
+import enviar from '@/middleware/enviarMensaje'
 
 export default {
 	name: 'prosker',
-	props:{
-		data: {
-			type: String
-		}
+	// props:{
+	// 	data: {
+	// 		type: String
+	// 	}
 
-	},
+	// },
 	components: {
 		barra: () => import('@/components/barra'),
 		buscar: () => import('@/components/buscar'),
@@ -81,22 +81,27 @@ export default {
 			errorEnvio: null,
 			enviandoMensaje: false,
 			dataUsuario: '',
-			nameUrl: this.$route.params.proskerName,
+			nameUrl: '',
+			data: '',
+			opcion: 0,
 		}
 	},
 	created() {
-		this.dataUsuario = this.data
-		
+		console.log('parametros:',this.$route.params)
+		this.nameUrl = this.$route.params.nameProsker
+		this.data = this.$route.params.data
 		if (!this.data) {
+			console.log('paso1',this.nameUrl)
 			this.nameUrl = this.quitarGuiones(this.nameUrl)
 			this.proskers.datos.forEach(element => {
 				if (element.nombre.toLowerCase().includes(this.nameUrl)){
 					this.dataUsuario=element.idEnc
 				}
 			});
+		}else{
+			this.dataUsuario = this.data.idEnc
 		}
 		this.extraerDatos()
-		window.scrollTo(0,0)
 	},
 	computed: {
 		usuario () {
@@ -444,8 +449,5 @@ export default {
 			margin-top: 300px;
 		}
 	}
-
-	
-	
 
 </style>

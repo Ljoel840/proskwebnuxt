@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div v-if="!proskers.cargando">
 		<menupc />
 		<Nuxt />
 		<p_footer />
@@ -22,6 +22,11 @@ export default {
 		this.$store.dispatch("publicaciones/getPublicaciones")
 		// this.$store.dispatch('getPosition'),
 		this.almacenamientoLocal()
+	},
+	computed: {
+		proskers(){
+			return this.$store.state.proskers
+		},
 	},
 	methods: {
 		almacenamientoLocal(){

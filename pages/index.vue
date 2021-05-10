@@ -90,19 +90,26 @@ export default {
 		comenzarCuentaRegresiva(){
 			this.tiempo = setInterval(()=>this.cambiarOpcion(), 5000);
 		},
+		ir(pag,data){
+			var nameProsker = ''
+			if (pag='prosker-nameProsker'){
+				nameProsker = this.quitarEspacios(data.nombre)
+			}
+			this.$router.push({
+				name: pag, 
+				params: {data,nameProsker}
+			}) 
+		},
 		seleccion(opc){
 			if (opc.tipo==='Categorias') {
 				this.ir("mostrarCategorias",opc.datos)
 			}else{
-				this.ir("Prosker",opc.datos.idEnc)
+				this.ir("prosker-nameProsker",opc.datos)
 
 			}
 		},
-		ir(pag,data){
-			this.$router.push({
-				name: pag, 
-				params: {data}
-			}) 
+		quitarEspacios(nombre){
+			return nombre.replace(/ /g, "-").toLowerCase()
 		},
 		cambiarOpcion(){
 			clearInterval(this.tiempo)

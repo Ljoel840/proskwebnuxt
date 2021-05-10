@@ -167,9 +167,13 @@ export default {
 		},
 
 		ir(pag,data){
+			var nameProsker = ''
+			if (pag='prosker-nameProsker'){
+				nameProsker = this.quitarEspacios(data.nombre)
+			}
 			this.$router.push({
 				name: pag, 
-				params: {data}
+				params: {data,nameProsker}
 			}) 
 		},
 		seleccion(opc){
@@ -179,10 +183,13 @@ export default {
 				this.$store.commit('busqueda/limpiarBusqueda')
 				this.extraer(this.dataUsuario,"","")
 			}else{
-				// this.ir("Prosker",opc.datos.idEnc)
+				this.ir("prosker-nameProsker",opc.datos)
 
 			}
 		},
+		quitarEspacios(nombre){
+			return nombre.replace(/ /g, "-").toLowerCase()
+		}
 	},
 
 }

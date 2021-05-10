@@ -2,7 +2,7 @@
 	<section>
 		<div class="fondoTitulo">
 			<div class="busqueda">
-				<buscar/>
+				<buscar @opcion="seleccion($event)"/>
 			</div>
 		</div>
 		<img src="@/assets/img/separador2.png" alt="separador" class="separador">
@@ -53,7 +53,8 @@ export default {
 			datos: [],
 			cargandoProsker: true,
 			error: null,
-			data: {}
+			data: {},
+			opcion: 0
 		}
 	},
 
@@ -79,10 +80,25 @@ export default {
 			this.cargandoProsker = false
 		},
 		ir(pag,data){
+			var nameProsker = ''
+			if (pag='prosker-nameProsker'){
+				nameProsker = this.quitarEspacios(data.nombre)
+			}
 			this.$router.push({
 				name: pag, 
-				params: {data}
-			})
+				params: {data,nameProsker}
+			}) 
+		},
+		seleccion(opc){
+			if (opc.tipo==='Categorias') {
+				this.ir("mostrarCategorias",opc.datos)
+			}else{
+				this.ir("prosker-nameProsker",opc.datos)
+
+			}
+		},
+		quitarEspacios(nombre){
+			return nombre.replace(/ /g, "-").toLowerCase()
 		},
 		
 	},

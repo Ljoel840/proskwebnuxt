@@ -43,6 +43,7 @@ export default {
 	data() {
 		return {
 			ultimo: 12,
+			opcion: 0,
 			imagenDefault: require('@/assets/img/usuario.png')
 		}
 	},
@@ -63,18 +64,25 @@ export default {
 			this.ultimo=this.ultimo+12
 		},
 		ir(pag,data){
+			var nameProsker = ''
+			if (pag='prosker-nameProsker'){
+				nameProsker = this.quitarEspacios(data.nombre)
+			}
 			this.$router.push({
 				name: pag, 
-				params: {data}
+				params: {data,nameProsker}
 			}) 
 		},
 		seleccion(opc){
 			if (opc.tipo==='Categorias') {
 				this.ir("mostrarCategorias",opc.datos)
 			}else{
-				this.ir("Prosker",opc.datos.idEnc)
+				this.ir("prosker-nameProsker",opc.datos)
 
 			}
+		},
+		quitarEspacios(nombre){
+			return nombre.replace(/ /g, "-").toLowerCase()
 		},
 	},
 }

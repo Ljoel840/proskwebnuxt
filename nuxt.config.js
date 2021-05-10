@@ -1,5 +1,6 @@
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
+  
   head: {
     title: 'Prosk Org',
     htmlAttrs: {
@@ -23,7 +24,6 @@ export default {
     ],
 
   },
-  dev: process.env.NODE_ENV !== 'production',
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
 	  '@/assets/css/styanimations.css',
@@ -90,12 +90,11 @@ export default {
 
   server: {
     // port: 8080, // desarrollo
-	host: '0', // produccion
-    port: 3000  // produccion
-	// port: process.env.NODE_ENV == 'production' ? '0' : 'localhost',
-	// port: process.env.NODE_ENV == 'production' ? 3000 : 8080,
-	// port: !config.dev  ? '0' : 'localhost',
-	// port: !config.dev  ? 3000 : 8080,
+	// host: '0', // produccion
+    // port: 3000  // produccion
+	host: process.env.NODE_ENV == 'production' ? '0' : 'localhost',
+	port: process.env.NODE_ENV == 'production' ? 3000 : 8080,
+	
+}
 
-  }
 }

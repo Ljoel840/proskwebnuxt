@@ -63,7 +63,7 @@ export default {
     },
 	async created() {
 		try{
-			console.log('title', this.seoActual)
+			// console.log('title', this.seoActual)
 			// window.scrollTo(0, 0)
 			this.titleBlog=this.quitarGuiones(this.titleBlog)
 			if (this.data) {
