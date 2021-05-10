@@ -90,10 +90,10 @@ export default {
 
   server: {
     // port: 8080, // desarrollo
-	// host: '0', // produccion
-    // port: 3000  // produccion
-	port: process.env.NODE_ENV == 'production' ? '0' : 'localhost',
-	port: process.env.NODE_ENV == 'production' ? 3000 : 8080,
+	host: '0', // produccion
+    port: 3000  // produccion
+	// port: process.env.NODE_ENV == 'production' ? '0' : 'localhost',
+	// port: process.env.NODE_ENV == 'production' ? 3000 : 8080,
 	// port: !config.dev  ? '0' : 'localhost',
 	// port: !config.dev  ? 3000 : 8080,
 
