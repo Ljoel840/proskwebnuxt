@@ -60,7 +60,7 @@ export default {
 
 	created() {
 		this.data = this.$route.params.data
-		console.log(this.data)
+		// console.log(this.data)
 		this.extraerDatos()
 	},
 	methods: {
@@ -81,7 +81,7 @@ export default {
 		},
 		ir(pag,data){
 			var nameProsker = ''
-			if (pag='prosker-nameProsker'){
+			if (pag=='prosker-nameProsker'){
 				nameProsker = this.quitarEspacios(data.nombre)
 			}
 			this.$router.push({

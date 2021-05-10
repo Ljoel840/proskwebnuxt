@@ -87,11 +87,10 @@ export default {
 		}
 	},
 	created() {
-		console.log('parametros:',this.$route.params)
+		// console.log('parametros:',this.$route.params)
 		this.nameUrl = this.$route.params.nameProsker
 		this.data = this.$route.params.data
 		if (!this.data) {
-			console.log('paso1',this.nameUrl)
 			this.nameUrl = this.quitarGuiones(this.nameUrl)
 			this.proskers.datos.forEach(element => {
 				if (element.nombre.toLowerCase().includes(this.nameUrl)){

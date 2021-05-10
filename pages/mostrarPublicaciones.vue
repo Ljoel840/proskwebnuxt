@@ -39,7 +39,7 @@ export default {
 		},
 		ir(pag,data){
 			var nameProsker = ''
-			if (pag='prosker-nameProsker'){
+			if (pag=='prosker-nameProsker'){
 				nameProsker = this.quitarEspacios(data.nombre)
 			}
 			this.$router.push({

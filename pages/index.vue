@@ -92,16 +92,22 @@ export default {
 		},
 		ir(pag,data){
 			var nameProsker = ''
-			if (pag='prosker-nameProsker'){
+			if (pag=='prosker-nameProsker'){
 				nameProsker = this.quitarEspacios(data.nombre)
+				this.$router.push({
+					name: pag, 
+					params: {data,nameProsker}
+				}) 
+			}else{
+				this.$router.push({
+					name: pag, 
+					params: {data}
+				}) 
 			}
-			this.$router.push({
-				name: pag, 
-				params: {data,nameProsker}
-			}) 
 		},
 		seleccion(opc){
-			if (opc.tipo==='Categorias') {
+			console.log('Opcion:',opc)
+			if (opc.tipo==='categorias') {
 				this.ir("mostrarCategorias",opc.datos)
 			}else{
 				this.ir("prosker-nameProsker",opc.datos)

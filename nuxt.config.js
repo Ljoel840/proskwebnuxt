@@ -71,7 +71,7 @@ export default {
     id: 'UA-151425464-1'
   },
   gtm: {
-    id: 'GTM-W32NXHL'
+    id: 'GTM-MZVHRN8'
   },
   
   // Axios module configuration: https://go.nuxtjs.dev/config-axios

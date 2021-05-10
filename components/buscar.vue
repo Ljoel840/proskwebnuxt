@@ -71,10 +71,10 @@ export default {
 			this.mostrar=false
 			this.busqueda=opc.nombre.toLowerCase()
 			if (this.opcion===0) {
-				this.$emit('opcion',{tipo:'Categorias',datos:opc})
+				this.$emit('opcion',{tipo:'categorias',datos:opc})
 
 			}else{
-				this.$emit('opcion',{tipo:'Proskers',datos:opc})
+				this.$emit('opcion',{tipo:'proskers',datos:opc})
 			}
 			this.busqueda = ''
 		},

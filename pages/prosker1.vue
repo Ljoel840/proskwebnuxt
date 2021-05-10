@@ -86,7 +86,7 @@ export default {
 		}
 	},
 	created() {
-		console.log('parametros:',this.$route.params)
+		// console.log('parametros:',this.$route.params)
 		this.dataUsuario = this.$route.params
 		this.data = this.$route.params.nombre
 		if (!this.data) {
