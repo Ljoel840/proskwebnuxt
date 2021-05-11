@@ -48,7 +48,7 @@ export default {
 	
 	head() {
 		return{
-			title: `Prosk - ${this.seoActual[0].BlogPostTitle}`,
+			title: `Prosk - ${this.seoActual[0] ? this.seoActual[0].BlogPostTitle : this.seo.datos[0].BlogPostTitle}`,
 
 			meta: [
 				{name: 'description', content: 'Blog: ' + this.seo.datos[0].BlogPostTitle + ' en Prosk '},
@@ -57,28 +57,32 @@ export default {
 				{property: 'og:description', content: 'Blog: ' + this.seo.datos[0].BlogPostTitle + ' en Prosk '},
 				{property: 'og:type', content: 'article'},
 				{property: 'og:url', content: 'https://prosk.org/#/'+this.article},
-				{property: 'og:image', content: this.seoActual[0].BlogPostHeaderImage }    
+				{property: 'og:image', content: `${this.seoActual[0] ? this.seoActual[0].BlogPostHeaderImage : this.seo.datos[0].BlogPostHeaderImage}` }    
 			]
 		}
     },
 	async created() {
 		try{
-			// console.log('title', this.seoActual)
-			// window.scrollTo(0, 0)
-			this.titleBlog=this.quitarGuiones(this.titleBlog)
 			if (this.data) {
 				this.data2=this.data
 			}else{
-				await extraerBlog({idEnc: ""})
+				if (this.titleBlog) {
+					this.titleBlog=this.quitarGuiones(this.titleBlog)
+					await extraerBlog({idEnc: ""})
 					.then(contenido =>{
 						contenido.forEach(element => {
 							if (element.BlogPostTitle.toLowerCase().includes(this.titleBlog)){
 								this.data2=element
 							}
 						});
+						console.log(this.data2)
+						if (!this.data2.BlogPostTitle) {
+							this.ir('noexiste')
+						}
 					}).catch(error => {
 						console.log(error)
 					})
+				}
 			}
 		}
 		catch (error){
@@ -100,7 +104,16 @@ export default {
 			return this.$store.state.seo
 		},
 		seoActual(){
-			return this.seo.datos.filter(e => e.BlogPostTitle.toLowerCase().includes(this.quitarGuiones(this.article)))
+			var seoDatos = ''
+			if (this.seo.datos[0]) {
+				seoDatos = this.seo.datos.filter(e => e.BlogPostTitle.toLowerCase().includes(this.quitarGuiones(this.article)))
+			}
+			if (seoDatos[0]) {
+				return seoDatos
+			}else{
+				return this.seo.datos[0]
+			}
+			// return this.seo.datos.filter(e => e.BlogPostTitle.toLowerCase().includes(this.quitarGuiones(this.article)))
 		}
 
 	},
