@@ -6,11 +6,11 @@
 			<h2>{{titulo}}</h2>	
 			<div class="contenedor">
 				<div class="blogs" v-for="(d,index) in listaBlog" :key="index">
-					<img class="imgBlog" :src="d.BlogPostHeaderImage" @click="ir('Detalle Blog',d)">
+					<img class="imgBlog" :src="d.BlogPostHeaderImage" @click="ir('titleBlog',d)">
 					<p class="fechaBlog">{{cambiarFecha(d.BlogPostDatePublished)}}</p>
 					<h3 class="tituloBlog"><strong>{{d.BlogPostTitle}}</strong></h3>
 					<p class="textoBlog" v-html="d.BlogPostContent.substr(0,160)+'...'"></p>
-					<button class="botonAceptar" @click="ir('Detalle Blog',d)">VER MÁS</button>
+					<button class="botonAceptar" @click="ir('titleBlog',d)">VER MÁS</button>
 				</div>
 			<h1 v-if="listaBlog.length<=0">No hay Blog en esta Categoría</h1>
 			</div>
@@ -22,12 +22,12 @@
 <script>
 export default {
 	name: 'categoriaBlog',
-	props:{
-		data:{
-			type: Object,
-			default:null
-		}
-	},
+	// props:{
+	// 	data:{
+	// 		type: Object,
+	// 		default:null
+	// 	}
+	// },
 	data() {
 		return {
 			options : { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour12:"false" },
@@ -36,7 +36,8 @@ export default {
 		}
 	},
 	created() {
-		// window.scrollTo(0, 0)
+		console.log(this.$route.params)
+		this.data=this.$route.params.data
 		if (this.blog.datos.length<=0) {
 			this.$store.commit('cargarBlog')
 		}

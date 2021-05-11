@@ -13,7 +13,7 @@
 				<h2>Proskers</h2>
 			</div>
 			<div class="contenedor">
-				<div class="contenedorUsuario" v-for="(d,index) in listaProskers" :key="index" @click="ir('Prosker',d.idEnc)">
+				<div class="contenedorUsuario" v-for="(d,index) in listaProskers" :key="index" @click="ir('prosker-nameProsker',d.idEnc,d.nombre)">
 					<div class="imagen" :style="{ backgroundImage: 'url(' + imagenDefault + ')' }" v-if="!d.UserPhotoImageUrl"></div>
 					<div class="imagen" :style="{ backgroundImage: 'url(' + d.UserPhotoImageUrl + ')' }" v-else></div>
 					<div class="texto">
@@ -63,15 +63,22 @@ export default {
 		agregarDatos(){
 			this.ultimo=this.ultimo+12
 		},
-		ir(pag,data){
-			var nameProsker = ''
+		ir(pag,d,nameProsker){
+			var data = new Object
 			if (pag=='prosker-nameProsker'){
-				nameProsker = this.quitarEspacios(data.nombre)
+				data.idEnc=d
+				nameProsker = this.quitarEspacios(nameProsker)
+				this.$router.push({
+					name: pag, 
+					params: {data,nameProsker}
+				}) 
+			}else{
+				data = d
+				this.$router.push({
+					name: pag, 
+					params: {data}
+				}) 
 			}
-			this.$router.push({
-				name: pag, 
-				params: {data,nameProsker}
-			}) 
 		},
 		seleccion(opc){
 			if (opc.tipo==='categorias') {

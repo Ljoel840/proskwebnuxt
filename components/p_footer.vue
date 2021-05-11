@@ -24,15 +24,15 @@
 				<h3>Descargá la app desde tu PlayStore, AppStore o AppGallery</h3>
 				<br>
 				<span>
-					<a href="http://hyperurl.co/DescargarPROSK">
+					<a href="https://play.google.com/store/apps/details?id=com.delfasoft.approsk&hl=es_UY&gl=US">
 						<img src="@/assets/img/i_playstore.png" alt="icono playstore" class="tiendas">
 					</a>
-					<a href="http://hyperurl.co/DescargarPROSK">
+					<a href="https://apps.apple.com/uy/app/prosk/id1491219843?l=es">
 						<img src="@/assets/img/i_appstore.png" alt="icono appstore" class="tiendas">
 					</a>
-					<a href="http://hyperurl.co/DescargarPROSK">
+					<!-- <a href="http://hyperurl.co/DescargarPROSK">
 						<img src="@/assets/img/i_appgallery.png" alt="icono appgallery" class="tiendas">
-					</a>
+					</a> -->
 				</span>
 			</div>
 		</div>
