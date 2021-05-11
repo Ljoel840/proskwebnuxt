@@ -14,6 +14,7 @@ export default {
 			value:Array
 		}
 	},
+
 };
 </script>
 <style scoped>

@@ -9,7 +9,7 @@
 			<img src="@/assets/img/separador2.png" alt="separador" class="separador">
 			<h2>La nueva App para contratación de Profesionales Independientes</h2>
 			<div class="contenedorVideo">
-				<video width="100%" height="auto" controls poster="@/assets/img/poster_video.jpg" >
+				<video width="100%" height="auto" controls poster="poster" >
  					 <source src="@/assets/video/proskv07.mp4" type="video/mp4">
  					 Your browser does not support HTML video.
 				</video>
@@ -96,7 +96,8 @@ export default {
 			datosPreguntas: [],
 			listaVentajas:cargarVentajas,
 			error: null,
-			cargandoPreguntas: true
+			cargandoPreguntas: true,
+			poster: require('@/assets/img/poster_video.jpg')
 		}
 	},
 	created() {

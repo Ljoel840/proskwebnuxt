@@ -1,6 +1,6 @@
 <template>
 	<div class="seccion">
-		<div class="contenedor">
+		<div class="contenedor" v-if="!categorias.cargando && !proskers.cargando && lista.length>0">
 			<span>
 				<input type="text" class="buscar" :placeholder="'Buscar por '+`${opcion==0 ? 'Categoria': 'Prosker'}`" v-model="busqueda" @keypress="mostrar=true">
 				<div class="lupa">
@@ -19,7 +19,7 @@
 			</span>
 			<div class="contenedorLista" v-if="!proskers.cargando && listaFiltrada.length>0 && mostrar">
 				<ul>
-					<li v-for="(p,index) in listaFiltrada" :key="index" @click="seleccion(p)">
+					<li v-for="(p,index) in listaFiltrada" :key="index" @click="seleccion(p,opcion)">
 						{{p.nombre.toLowerCase()}}
 					</li>
 				</ul>
@@ -30,6 +30,12 @@
 <script>
 export default {
 	name: 'buscar',
+	props: {
+		op: {
+			type: String,
+			default: "0"
+		}
+	},
 	data() {
 		return {
 			opcion: 0,
@@ -39,7 +45,12 @@ export default {
 		}
 	},
 	created() {
-		this.lista=this.categorias.datos
+		this.opcion = parseInt(this.op)
+		if (this.opcion == 0) {
+			this.lista=this.categorias.datos
+		}else{
+			this.lista=this.proskers.datos
+		}
 	},
 	computed: {
 		proskers(){
@@ -54,7 +65,6 @@ export default {
 			}else {
 				return []
 			}
-			
 		},
 	},
 	methods: {
@@ -67,17 +77,20 @@ export default {
 			}
 		
 		},
-		seleccion(opc){
+		seleccion(data,opc){
 			this.mostrar=false
-			this.busqueda=opc.nombre.toLowerCase()
-			if (this.opcion===0) {
-				this.$emit('opcion',{tipo:'categorias',datos:opc})
-
+			this.busqueda=data.nombre.toLowerCase()
+			if (opc==0) {
+				this.$emit('opcion',{tipo:'categorias',datos:data})
 			}else{
-				this.$emit('opcion',{tipo:'prosker-nameProsker',datos:opc})
+				this.$emit('opcion',{tipo:'prosker-nameProsker',datos:data})
 			}
 			this.busqueda = ''
 		},
+		inicializarLista(){
+			this.cambiarLista(1)
+			this.cambiarLista(0)
+		}
 	},
 }
 </script>

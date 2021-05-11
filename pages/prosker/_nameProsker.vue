@@ -3,7 +3,7 @@
 		<div class="fondoTitulo">
 		</div>
 			<div class="busqueda">
-				<buscar @opcion="seleccion($event)"/>
+				<buscar @opcion="seleccion($event)"  op="1"/>
 			</div>
 		<img src="@/assets/img/separador2.png" alt="separador" class="separador">
 		<barra v-if="cargandoProsker"/>
@@ -87,7 +87,6 @@ export default {
 		}
 	},
 	created() {
-		console.log('parametros:',this.$route.params)
 		this.nameUrl = this.$route.params.nameProsker
 		this.data = this.$route.params.data
 		if (!this.data) {
@@ -185,6 +184,7 @@ export default {
 			}
 		},
 		seleccion(opc){
+			console.log('Opcion:',opc)
 			if (opc.tipo==='categorias') {
 				this.ir("mostrarCategorias",opc.datos)
 			}else{

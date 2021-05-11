@@ -1,5 +1,5 @@
 <template>
-	<div v-if="!proskers.cargando">
+	<div v-if="!proskers.cargando && !categorias.cargando">
 		<menupc />
 		<Nuxt />
 		<p_footer />
@@ -12,7 +12,7 @@ export default {
 	components: {
 		p_footer,
 		menupc,
-		// spinnerCircular: () => import('@/components/spinnerCircular'),
+		spinnerCircular: () => import('@/components/spinnerCircular'),
 	},
 	created() {
 		// this.$store.commit('cargarCategoriasBlog')
@@ -21,12 +21,16 @@ export default {
 		this.$store.dispatch("proskers/getProskers")
 		this.$store.dispatch("publicaciones/getPublicaciones")
 		// this.$store.dispatch('getPosition'),
+		this.$store.dispatch('categorias/getCategorias')
 		this.almacenamientoLocal()
 	},
 	computed: {
 		proskers(){
 			return this.$store.state.proskers
 		},
+		categorias(){
+			return this.$store.state.categorias
+		}
 	},
 	methods: {
 		almacenamientoLocal(){

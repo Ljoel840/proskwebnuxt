@@ -4,7 +4,7 @@
 			<h1>Proskers</h1>
 		</div>
 			<div class="busqueda">
-				<buscar @opcion="seleccion($event)"/>
+				<buscar @opcion="seleccion($event)" op="1"/>
 			</div>
 		<div class="contenedorPrincipal">
 			<img src="@/assets/img/separador2.png" alt="separador" class="separador">

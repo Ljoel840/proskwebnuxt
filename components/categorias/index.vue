@@ -24,7 +24,7 @@ export default {
 		}
 	},
 	created() {
-		this.$store.dispatch('categorias/getCategorias')
+		// this.$store.dispatch('categorias/getCategorias')
 	},
 	computed: {
 		datosCategorias () {
