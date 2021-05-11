@@ -69,15 +69,14 @@
 			<img class="separador" src="@/assets/img/separador.png" alt="">
 			<div class="contenedorPreguntas">
 				<h2>Preguntas Frecuentes</h2>
-				<barra v-if="cargandoPreguntas"/>
-				<preguntas :datos="datosPreguntas" v-if="!cargandoPreguntas && datosPreguntas.length>0" />
+				<barra v-if="datosPreguntas.cargando"/>
+				<preguntas :datos="datosPreguntas.datos" v-if="!datosPreguntas.cargando && datosPreguntas.datos.length>0" />
 			</div>
 
 		</div>
 	</section>
 </template>
 <script>
-import extraerPreguntas from '../middleware/extraerPreguntas'
 import cargarVentajas from '../middleware/cargarVentajas'
 export default {
 	name: 'funcionamiento',
@@ -92,44 +91,23 @@ export default {
 			mostrar2:false,
 			mostrar3:false,
 			mostrar4:false,
-			cargandoPreguntas: false,
-			datosPreguntas: [],
 			listaVentajas:cargarVentajas,
 			error: null,
-			cargandoPreguntas: true,
 			poster: require('@/assets/img/poster_video.jpg')
 		}
 	},
 	created() {
 		this.$store.dispatch('categoriasFAQ/getCategoriasFAQ')
-		if (this.categoriasFAQ.datos[0]) {
-			this.cargarPreguntas()
-		}
 	},
 	computed: {
 		categoriasFAQ(){
 			return this.$store.state.categoriasFAQ
+		},
+		datosPreguntas(){
+			return this.$store.state.categoriasFAQ.preguntas
 		}
 	},
-	methods: {
-		async cargarPreguntas(){
-			try {
-                this.error = null
-                this.cargandoPreguntas = true
-				if (this.categoriasFAQ.datos[0]) {
-					this.datosPreguntas=await extraerPreguntas ({
-						idEnc: this.categoriasFAQ.datos[0].FAQCategoryId,
-					})
-					this.cargandoPreguntas = false
-				}
-            }
-            catch (error) {
-				this.error = error
-				console.log(this.error)
-            }
-			this.cargandoPreguntas = false
-		},
-	},
+
 
 }
 </script>

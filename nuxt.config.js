@@ -38,7 +38,6 @@ export default {
   plugins: [
 	// { src: '~/plugins/localStorage.js', mode: 'client' },
 	'@/plugins/slidersConfig',
-	// '@/plugins/googlemapsConfig'
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -89,6 +88,9 @@ export default {
   },
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
+	babel: {
+		plugins: [['@babel/plugin-proposal-private-methods', { loose: true }]],
+	  },
   },
 
   server: {
