@@ -1,7 +1,7 @@
 <template>
   <swiper class="swiper" :options="swiperOption">
     <swiper-slide  v-for="(d,index) in proskersDestacados" :key="index" >
-		<div class="contenedorUsuario" :key="index" @click="ir('prosker',d.idEnc)">
+		<div class="contenedorUsuario" :key="index" @click="ir('prosker-nameProsker',d.idEnc)">
 			<div class="imagen" :style="{ backgroundImage: 'url(' + d.foto + ')' }"></div>
 			<div class="texto">
 				<h1>{{d.nombre}}</h1>
@@ -55,12 +55,19 @@ export default {
 		}
 	},
 	methods: {
-		ir (pag,data) {
+		ir (pag,d,nameProsker) {
+			var data = new Object
+			data.idEnc = d
+			nameProsker=this.quitarEspacios(nameProsker)
+
 			this.$router.push({
 				name: pag, 
-				params: {data}
+				params: {data,nameProsker}
 			}) 
 		},
+		quitarEspacios(nombre){
+			return nombre.replace(/ /g, "-").toLowerCase()
+		}
 	},
 }
 </script>

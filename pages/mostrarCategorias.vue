@@ -177,7 +177,7 @@ export default {
 			}) 
 		},
 		seleccion(opc){
-			if (opc.tipo==='Categorias') {
+			if (opc.tipo==='categorias') {
 				this.dataUsuario = opc.datos.idEnc
 				this.data2 = opc.datos
 				this.$store.commit('busqueda/limpiarBusqueda')

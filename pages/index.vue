@@ -106,7 +106,6 @@ export default {
 			}
 		},
 		seleccion(opc){
-			console.log('Opcion:',opc)
 			if (opc.tipo==='categorias') {
 				this.ir("mostrarCategorias",opc.datos)
 			}else{

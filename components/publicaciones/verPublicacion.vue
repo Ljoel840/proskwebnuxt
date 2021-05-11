@@ -9,7 +9,7 @@
 			<p>{{d.descripcion}}</p>
 		</div>
 		<span class="prosker">
-			<div class="foto" :style="d.foto ?{ backgroundImage: 'url(' + d.foto + ')' }:{ backgroundImage: 'url(' + sinFoto + ')' }" @click="ir('prosker',d.idEncUsuario)" ></div>
+			<div class="foto" :style="d.foto ?{ backgroundImage: 'url(' + d.foto + ')' }:{ backgroundImage: 'url(' + sinFoto + ')' }" @click="ir('prosker-nameProsker',d.idEncUsuario,d.nombre)" ></div>
 			<div>
 				<p class="nombre">{{d.nombre.toLowerCase()}}</p>
 				<p class="categoria">{{d.categoria.toLowerCase()}}</p>
@@ -37,7 +37,6 @@ export default {
 
 		}
 	},
-	
 	computed: {
 		usuario(){
 			return this.$store.state.usuario
@@ -55,12 +54,28 @@ export default {
 			return img1.height
 		},
 
-		ir (pag,data) {
-			this.$router.push({
-				name: pag, 
-				params: {data}
-			}) 
+		ir (pag,d,nameProsker) {
+			var data = new Object
+			if (pag=='prosker-nameProsker') {
+				data.idEnc = d
+				nameProsker=this.quitarEspacios(nameProsker)
+	
+				this.$router.push({
+					name: pag, 
+					params: {data,nameProsker}
+				}) 
+			}else{
+				data = d
+				this.$router.push({
+					name: pag, 
+					params: {data}
+				}) 
+			}
 		},
+
+		quitarEspacios(nombre){
+			return nombre.replace(/ /g, "-").toLowerCase()
+		}
 	},
 }
 </script>

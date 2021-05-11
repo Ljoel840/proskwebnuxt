@@ -74,7 +74,7 @@ export default {
 				this.$emit('opcion',{tipo:'categorias',datos:opc})
 
 			}else{
-				this.$emit('opcion',{tipo:'proskers',datos:opc})
+				this.$emit('opcion',{tipo:'prosker-nameProsker',datos:opc})
 			}
 			this.busqueda = ''
 		},

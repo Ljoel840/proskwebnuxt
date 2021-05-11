@@ -20,7 +20,7 @@ import extraerBlog from '@/middleware/extraerBlog'
     async asyncData({params}) {
     //   const article = await $content('articles', params.titleBlog).fetch()
 		const article = params.titleBlog
-		console.log('Articulo: ',params)
+		// console.log('Articulo: ',params)
       return { article }
     },
 	// async fetch() {

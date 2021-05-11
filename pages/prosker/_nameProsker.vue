@@ -87,7 +87,7 @@ export default {
 		}
 	},
 	created() {
-		// console.log('parametros:',this.$route.params)
+		console.log('parametros:',this.$route.params)
 		this.nameUrl = this.$route.params.nameProsker
 		this.data = this.$route.params.data
 		if (!this.data) {
@@ -170,13 +170,22 @@ export default {
 			}
 		},
 		ir(pag,data){
-			this.$router.push({
-				name: pag, 
-				params: {data}
-			})
+			var nameProsker = ''
+			if (pag=='prosker-nameProsker'){
+				nameProsker = this.quitarEspacios(data.nombre)
+				this.$router.push({
+					name: pag, 
+					params: {data,nameProsker}
+				}) 
+			}else{
+				this.$router.push({
+					name: pag, 
+					params: {data}
+				}) 
+			}
 		},
 		seleccion(opc){
-			if (opc.tipo==='Categorias') {
+			if (opc.tipo==='categorias') {
 				this.ir("mostrarCategorias",opc.datos)
 			}else{
 				this.dataUsuario = opc.datos.idEnc

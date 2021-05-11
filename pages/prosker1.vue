@@ -174,7 +174,7 @@ export default {
 			})
 		},
 		seleccion(opc){
-			if (opc.tipo==='Categorias') {
+			if (opc.tipo==='categorias') {
 				this.ir("mostrarCategorias",opc.datos)
 			}else{
 				this.dataUsuario = opc.datos.idEnc

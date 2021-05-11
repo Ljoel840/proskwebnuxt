@@ -10,7 +10,7 @@
 			<img src="@/assets/img/separador2.png" alt="separador" class="separador">
 
 			<div class="contenedor">
-				<div class="contenedorUsuario" v-for="(d,index) in proskersDestacados" :key="index" @click="ir('prosker',d.idEnc)">
+				<div class="contenedorUsuario" v-for="(d,index) in proskersDestacados" :key="index" @click="ir('prosker-nameProsker',d.idEnc)">
 					<div class="imagen" :style="{ backgroundImage: 'url(' + imagenDefault + ')' }" v-if="!d.foto"></div>
 					<div class="imagen" :style="{ backgroundImage: 'url(' + d.foto + ')' }" v-else></div>
 					<div class="texto">

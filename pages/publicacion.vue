@@ -10,7 +10,7 @@
 		<!-- <div class="contenedorPublicidad">
 			<div class="pub1"> -->
 				<div class="contenedorPrincipal" v-if="!cargandoProsker&&datos.length>0">
-					<div class="contenedorUsuario" @click="ir('Prosker',datos[0].idEnc)">
+					<div class="contenedorUsuario" @click="ir('prosker-nameProsker',datos[0])">
 						<div class="foto" :style="{ backgroundImage: 'url(' + data.foto + ')' }"></div>
 						<div class="datos">
 							<h2>{{data.nombre}}</h2>
@@ -83,14 +83,19 @@ export default {
 			var nameProsker = ''
 			if (pag=='prosker-nameProsker'){
 				nameProsker = this.quitarEspacios(data.nombre)
+				this.$router.push({
+					name: pag, 
+					params: {data,nameProsker}
+				}) 
+			}else{
+				this.$router.push({
+					name: pag, 
+					params: {data}
+				}) 
 			}
-			this.$router.push({
-				name: pag, 
-				params: {data,nameProsker}
-			}) 
 		},
 		seleccion(opc){
-			if (opc.tipo==='Categorias') {
+			if (opc.tipo==='categorias') {
 				this.ir("mostrarCategorias",opc.datos)
 			}else{
 				this.ir("prosker-nameProsker",opc.datos)
